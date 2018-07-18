@@ -132,12 +132,12 @@ namespace ProdavnicaWeb.Controllers
                 return NotFound();
             }
 
-            proveraProizvoda(kategorija.KategorijaId);
+            ProveraProizvoda(kategorija.KategorijaId);
 
             return View(kategorija);
         }
 
-        private void proveraProizvoda(int KategorijaId)
+        private void ProveraProizvoda(int KategorijaId)
         {
             _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
             _db.SaveChanges();
