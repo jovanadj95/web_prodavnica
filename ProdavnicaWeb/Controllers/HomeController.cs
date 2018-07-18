@@ -24,8 +24,10 @@ namespace ProdavnicaWeb.Controllers
             IEnumerable<Proizvod> listaProizvoda = db.Proizvodi;
             if (kategorija != "")
             {
+                IEnumerable<Kategorija> listaKategorija = db.Kategorije;
                 listaProizvoda = listaProizvoda
-                    .Where(p => p.KategorijaId == NadjiKategoriju(kategorija));
+                    .Where(p => p.KategorijaId == listaKategorija
+                    .SingleOrDefault(k => k.Naziv.Equals(kategorija)).KategorijaId);
 
             }
 
@@ -49,14 +51,6 @@ namespace ProdavnicaWeb.Controllers
         public IActionResult Administracija()
         {
             return View();
-        }
-
-        private int NadjiKategoriju(string kategorija)
-        {
-            IEnumerable<Kategorija> listaKategorija = db.Kategorije;
-            listaKategorija = listaKategorija
-                .Where(k => k.Naziv.Equals(kategorija));
-            return listaKategorija.ElementAt(0).KategorijaId;
         }
 
         public IActionResult About()

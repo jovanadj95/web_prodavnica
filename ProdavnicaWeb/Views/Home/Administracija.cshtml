@@ -5,6 +5,20 @@
     var korisnik = await um.GetUserAsync(User);
 }
 
-<h2>Vi ste administrator</h2>
+<h3>Admin panel</h3>
+
+<a class="btn btn-block mt-1 btn-primary"
+   asp-controller="Kategorija"
+   asp-action="Index"
+   asp-route-kategorija="">
+    Izmenite kategorije
+</a>
+
+<a class="btn btn-block mt-1 btn-primary"
+   asp-controller="Proizvod"
+   asp-action="Index"
+   asp-route-kategorija="">
+    Izmenite proizvode
+</a>
 
 

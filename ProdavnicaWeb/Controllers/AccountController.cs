@@ -68,7 +68,14 @@ namespace ProdavnicaWeb.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+                    if (model.Email.Equals("admin@gmail.com"))
+                    {
+                        return RedirectToAction("Administracija", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
                
                 else
