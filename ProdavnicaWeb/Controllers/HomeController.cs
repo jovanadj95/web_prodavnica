@@ -31,6 +31,7 @@ namespace ProdavnicaWeb.Controllers
 
             }
 
+            if (listaProizvoda.Any()) {
             if (min == null)
             {
                 min = listaProizvoda.Min(p => p.Cena);
@@ -44,6 +45,7 @@ namespace ProdavnicaWeb.Controllers
             listaProizvoda = listaProizvoda
                     .Where(p => p.Cena >= min && p.Cena <= max)
                     .OrderBy(p => p.Cena);
+            }
             return View("Index", listaProizvoda.ToList());
         }
 

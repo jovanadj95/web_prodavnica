@@ -12,10 +12,12 @@ namespace ProdavnicaWeb.Controllers
     public class KategorijaController : Controller
     {
         private readonly ProdavnicaWebContext _context;
+        private readonly ProdavnicaWebContext _db;
 
-        public KategorijaController(ProdavnicaWebContext context)
+        public KategorijaController(ProdavnicaWebContext context, ProdavnicaWebContext db)
         {
             _context = context;
+            _db = db;
         }
 
         // GET: Kategorija
@@ -122,7 +124,7 @@ namespace ProdavnicaWeb.Controllers
             {
                 return NotFound();
             }
-            
+
             var kategorija = await _context.Kategorije
                 .SingleOrDefaultAsync(m => m.KategorijaId == id);
             if (kategorija == null)
@@ -130,7 +132,15 @@ namespace ProdavnicaWeb.Controllers
                 return NotFound();
             }
 
+            proveraProizvoda(kategorija.KategorijaId);
+
             return View(kategorija);
+        }
+
+        private void proveraProizvoda(int KategorijaId)
+        {
+            _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
+            _db.SaveChanges();
         }
 
         // POST: Kategorija/Delete/5
