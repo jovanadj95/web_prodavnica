@@ -132,7 +132,6 @@ namespace ProdavnicaWeb.Controllers
                 return NotFound();
             }
 
-            ProveraProizvoda(kategorija.KategorijaId);
             return View(kategorija);
         }
 
@@ -143,13 +142,13 @@ namespace ProdavnicaWeb.Controllers
                     .Where(p => p.KategorijaId == KategorijaId);
             if (listaProizvoda.Any())
             {
-                foreach (Proizvod item in listaProizvoda)
+                foreach (Proizvod proiz in listaProizvoda)
                 {
-                    _db.Stavke.RemoveRange(_db.Stavke.Where(s => s.ProizvodId == item.ProizvodId));
-                    _db.SaveChanges();
-                    _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
+                    _db.Stavke.RemoveRange(_db.Stavke.Where(s => s.ProizvodId == proiz.ProizvodId));
                     _db.SaveChanges();
                 }
+                _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
+                _db.SaveChanges();
             }
         }
 
@@ -159,6 +158,7 @@ namespace ProdavnicaWeb.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var kategorija = await _context.Kategorije.SingleOrDefaultAsync(m => m.KategorijaId == id);
+            ProveraProizvoda(kategorija.KategorijaId);
             _context.Kategorije.Remove(kategorija);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
