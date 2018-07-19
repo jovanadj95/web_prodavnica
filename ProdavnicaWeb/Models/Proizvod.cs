@@ -18,6 +18,7 @@ namespace ProdavnicaWeb.Models
         [Display(Name ="Naziv proizvoda")]
         [StringLength(100)]
         public string Naziv { get; set; }
+        [Display(Name ="Opis proizvoda")]
         [StringLength(100)]
         public string Opis { get; set; }
         [Column(TypeName = "decimal(10, 2)")]

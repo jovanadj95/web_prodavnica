@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProdavnicaWeb.Models.Kategorija>
+﻿@model IEnumerable<Kategorija>
 
 @{
     ViewData["Title"] = "Kategorija";
@@ -14,22 +14,22 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Naziv)
+                Naziv kategorije
             </th>
-            <th></th>
+            <th>Opcije</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (Kategorija k in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Naziv)
+                    @k.Naziv
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.KategorijaId">Izmeni</a> |
-                    <a asp-action="Details" asp-route-id="@item.KategorijaId">Detalji</a> |
-                    <a asp-action="Delete" asp-route-id="@item.KategorijaId">Obrisi</a>
+                    <a asp-action="Edit" asp-route-id="@k.KategorijaId">Izmeni</a> |
+                    <a asp-action="Details" asp-route-id="@k.KategorijaId">Detalji</a> |
+                    <a asp-action="Delete" asp-route-id="@k.KategorijaId">Obrisi</a>
                 </td>
             </tr>
         }

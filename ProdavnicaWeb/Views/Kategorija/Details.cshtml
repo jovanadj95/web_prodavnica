@@ -1,4 +1,4 @@
-﻿@model ProdavnicaWeb.Models.Kategorija
+﻿@model Kategorija
 
 @{
     ViewData["Title"] = "Details";
@@ -10,10 +10,10 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Naziv)
+            Naziv kategorije
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Naziv)
+            @Model.Naziv
         </dd>
     </dl>
 </div>
