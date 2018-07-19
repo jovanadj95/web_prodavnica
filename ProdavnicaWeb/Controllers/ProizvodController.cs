@@ -47,7 +47,7 @@ namespace ProdavnicaWeb.Controllers
         // GET: Proizvods/Create
         public IActionResult Create()
         {
-            ViewData["KategorijaId"] = new SelectList(_context.Kategorije, "KategorijaId", "KategorijaId");
+            ViewBag.KategorijeLista = new SelectList(_context.Kategorije.Select(k => k), "KategorijaId", "Naziv");
             return View();
         }
 

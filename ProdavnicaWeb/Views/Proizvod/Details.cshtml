@@ -4,39 +4,38 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Detalji o proizvodu</h2>
 
 <div>
-    <h4>Proizvod</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Naziv)
+            Naziv
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Naziv)
+            @Model.Naziv
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Opis)
+            Opis
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Opis)
+            @Model.Opis
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Cena)
+            Cena
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Cena)
+            @Model.Cena
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Kategorija)
+            Kategorija
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Kategorija.KategorijaId)
+            @Model.Kategorija.Naziv
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProizvodId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.ProizvodId">Izmeni</a> |
+    <a asp-action="Index">Vrati se na listu</a>
 </div>

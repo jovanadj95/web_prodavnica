@@ -133,14 +133,24 @@ namespace ProdavnicaWeb.Controllers
             }
 
             ProveraProizvoda(kategorija.KategorijaId);
-
             return View(kategorija);
         }
 
         private void ProveraProizvoda(int KategorijaId)
         {
-            _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
-            _db.SaveChanges();
+            IEnumerable<Proizvod> listaProizvoda = _db.Proizvodi.ToList();
+            listaProizvoda = listaProizvoda
+                    .Where(p => p.KategorijaId == KategorijaId);
+            if (listaProizvoda.Any())
+            {
+                foreach (Proizvod item in listaProizvoda)
+                {
+                    _db.Stavke.RemoveRange(_db.Stavke.Where(s => s.ProizvodId == item.ProizvodId));
+                    _db.SaveChanges();
+                    _db.Proizvodi.RemoveRange(_db.Proizvodi.Where(p => p.KategorijaId == KategorijaId));
+                    _db.SaveChanges();
+                }
+            }
         }
 
         // POST: Kategorija/Delete/5
