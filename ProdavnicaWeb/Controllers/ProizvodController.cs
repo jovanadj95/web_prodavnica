@@ -12,10 +12,12 @@ namespace ProdavnicaWeb.Controllers
     public class ProizvodController : Controller
     {
         private readonly ProdavnicaWebContext _context;
+        private readonly ProdavnicaWebContext _db;
 
-        public ProizvodController(ProdavnicaWebContext context)
+        public ProizvodController(ProdavnicaWebContext context, ProdavnicaWebContext db)
         {
             _context = context;
+            _db = db;
         }
 
         // GET: Proizvods
@@ -141,12 +143,20 @@ namespace ProdavnicaWeb.Controllers
             return View(proizvod);
         }
 
+        private void ProveraStavki(int proizvodId)
+        {
+            _db.Stavke.RemoveRange(_db.Stavke.Where(s => s.ProizvodId == proizvodId));
+            _db.SaveChanges();
+        }
+
+
         // POST: Proizvods/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var proizvod = await _context.Proizvodi.SingleOrDefaultAsync(m => m.ProizvodId == id);
+            ProveraStavki(proizvod.ProizvodId);
             _context.Proizvodi.Remove(proizvod);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

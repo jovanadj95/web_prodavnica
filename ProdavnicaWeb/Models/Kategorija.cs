@@ -15,6 +15,7 @@ namespace ProdavnicaWeb.Models
 
         public int KategorijaId { get; set; }
         [StringLength(100)]
+        [Display(Name = "Naziv kategorije")]
         public string Naziv { get; set; }
 
         [InverseProperty("Kategorija")]

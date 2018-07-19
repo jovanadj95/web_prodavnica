@@ -22,7 +22,7 @@
 }
 
 <div class="card p-1">
-    <form asp-action="Index" data-ajax="true" data-ajax-update="#div1">
+    <form asp-action="Index" data-ajax="true" data-ajax-update="#div1" asp-route-kategorija="@ViewBag.Kategorija">
         <div class="form-group">
             <label for="ime">Unesite minimalnu cenu</label>
             <input type="text" data-val="true" data-val-requied ="Unesite broj"

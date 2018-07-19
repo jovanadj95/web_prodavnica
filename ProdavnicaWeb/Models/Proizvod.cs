@@ -15,6 +15,7 @@ namespace ProdavnicaWeb.Models
 
         public int ProizvodId { get; set; }
         public int KategorijaId { get; set; }
+        [Display(Name ="Naziv proizvoda")]
         [StringLength(100)]
         public string Naziv { get; set; }
         [StringLength(100)]
