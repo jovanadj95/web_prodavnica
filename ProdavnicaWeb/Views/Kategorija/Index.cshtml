@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<ProdavnicaWeb.Models.Kategorija>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Kategorija";
 }
 
-<h2>Index</h2>
-
 <span>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Kreiraj novu kategoriju</a>
 </span>
 <span class="float-right">
     <a asp-action="Administracija" asp-controller="Home">Vrati se na admin panel</a>
@@ -29,9 +27,9 @@
                     @Html.DisplayFor(modelItem => item.Naziv)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.KategorijaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.KategorijaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.KategorijaId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.KategorijaId">Izmeni</a> |
+                    <a asp-action="Details" asp-route-id="@item.KategorijaId">Detalji</a> |
+                    <a asp-action="Delete" asp-route-id="@item.KategorijaId">Obrisi</a>
                 </td>
             </tr>
         }

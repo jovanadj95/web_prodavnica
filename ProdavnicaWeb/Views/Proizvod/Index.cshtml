@@ -2,10 +2,9 @@
 @model IEnumerable<Proizvod>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Proizvodi";
 }
 
-<h2>Index</h2>
 
 <span>
     <a asp-action="Create">Kreiraj novi proizvod</a>
@@ -28,7 +27,6 @@
             <th>
                Kategorija
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,9 +45,9 @@
                 @p.Kategorija.Naziv
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@p.ProizvodId" class="d-block">Edit</a>
-                <a asp-action="Details" asp-route-id="@p.ProizvodId" class="d-block">Details</a>
-                <a asp-action="Delete" asp-route-id="@p.ProizvodId" class="d-block">Delete</a>
+                <a asp-action="Edit" asp-route-id="@p.ProizvodId" class="d-block">Izmeni</a>
+                <a asp-action="Details" asp-route-id="@p.ProizvodId" class="d-block">Detalji</a>
+                <a asp-action="Delete" asp-route-id="@p.ProizvodId" class="d-block">Obrisi</a>
             </td>
         </tr>
 }

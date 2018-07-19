@@ -81,7 +81,8 @@ namespace ProdavnicaWeb.Controllers
             {
                 return NotFound();
             }
-            ViewData["KategorijaId"] = new SelectList(_context.Kategorije, "KategorijaId", "KategorijaId", proizvod.KategorijaId);
+
+            ViewBag.KategorijeLista = new SelectList(_context.Kategorije.Select(k => k), "KategorijaId", "Naziv");
             return View(proizvod);
         }
 
