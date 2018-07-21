@@ -5,15 +5,15 @@
     </div>
 <div class="col-md-8">
 
-        @model IEnumerable<Proizvod>
-        @{
-            ViewData["Title"] = "Proizvodi";
-        }
-        @foreach (Proizvod p in Model)
-        {
+@model IEnumerable<Proizvod>
+@{
+    ViewData["Title"] = "Proizvodi";
+ }
+ @foreach (Proizvod p in Model)
+ {
 
-            @Html.Partial("_PrikaziProizvod", p)
+  @Html.Partial("_PrikaziProizvod", p)
 
-        }
+ }
     </div>
 </div>

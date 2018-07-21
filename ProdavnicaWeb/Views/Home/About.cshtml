@@ -1,7 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "O nama";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+   
+
+<h4>Informacije o nama</h4>
+
+
+<address>
+    <strong>E-mail:</strong> <a href="mailto:filip.panic.1993@gmail.com">filip.panic.1993@gmail.com</a><br />
+    <strong>Telefon:</strong> 064/085-1354 <br />
+    <strong>Adresa:</strong> Vidikovacki venac 31 <br />
+    Beograd, Rakovica 11090 <br />
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+
+    <div class="row">
+        <div id="map"></div>
+        <script>
+
+            function initMap() {
+
+                var uluru = { lat: 44.738465, lng: 20.425146 };
+                var map = new google.maps.Map(
+                    document.getElementById('map'), { zoom: 15, center: uluru });
+                var marker = new google.maps.Marker({ position: uluru, map: map });
+            }
+        </script>
+
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCauMQhG5YYB22XecVgAdTHfGjV7VFp4n8&callback=initMap">
+        </script>
+    </div>
+
+</address>

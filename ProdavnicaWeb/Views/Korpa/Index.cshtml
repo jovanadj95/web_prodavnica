@@ -1,6 +1,6 @@
 ﻿@model Korpa
 <h2>Vasa korpa</h2>
-<div class="row">
+<div class="row m-0">
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -15,31 +15,31 @@
         <tbody>
             @foreach (StavkaKorpe stavka in Model.Stavke)
             {
-                <tr>
+                <tr class="bg-dark text-white">
                     <td class="text-center">@stavka.Kolicina</td>
                     <td class="text-left">@stavka.Proizvod.Naziv</td>
                     <td class="text-right">@stavka.Proizvod.Cena.ToString()</td>
                     <td class="text-right">
                         @((stavka.Kolicina * stavka.Proizvod.Cena).ToString())
                     </td>
-                    <td>
+                    <td align="center">
                         <form asp-action="ObrisiStavku" method="post">
-                            <input type="hidden" name="ProizvodId" value="@stavka.Proizvod.ProizvodId" />                                
-                            <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />                                 
-                            <button type="submit" class="btn btn-sm btn-danger"> Ukloni</button>                             
-                            
+                            <input type="hidden" name="ProizvodId" value="@stavka.Proizvod.ProizvodId" />
+                            <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+                            <button type="submit" class="btn btn-sm btn-danger"> Ukloni</button>
+
                         </form>
                     </td>
                     <td>
 
                         <form asp-action="PromeniStavku" method="post">
 
-                            <input type="hidden" name="ProizvodId" value="@stavka.Proizvod.ProizvodId" />                                 
-                            <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />                                  
+                            <input type="hidden" name="ProizvodId" value="@stavka.Proizvod.ProizvodId" />
+                            <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
                             <div class="input-group">
                                 <input type="number" name="kolicina" value="@stavka.Kolicina" class="form-control" />
                                 <span class="input-group-btn">
-                                    <button class="btn btn-success" type="submit">Promeni</button>
+                                    <button class="btn btn-success ml-1" type="submit">Promeni</button>
                                 </span>
                             </div>
                         </form>
@@ -58,14 +58,10 @@
     </table>
 </div>
 
-<div class="text-center">
-    <a class="btn btn-primary" href="@ViewBag.ReturnUrl">Nastavi kupovinu</a>
-</div>
-
-<hr />
-<div class="row">
+<div class="btn-toolbar">
+    <a class="btn btn-primary mr-auto" href="@ViewBag.ReturnUrl">Nastavi kupovinu</a>
     <form asp-action="Index" asp-controller="Kupovina">
-        <button class="btn btn-primary btn-block">Kupi</button>
+        <button class="btn btn-success pr-5 pl-5">Kupi</button>
     </form>
 </div>
 
