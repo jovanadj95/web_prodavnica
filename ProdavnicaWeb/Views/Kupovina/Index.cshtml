@@ -1,3 +1,49 @@
-﻿
+﻿@model Korpa
+
+@{
+    ViewData["Title"] = "Kupovina";
+}
+
+<h3>Kupili ste:</h3>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Naziv proizvoda
+            </th>
+            <th>
+                Cena proizvoda
+            </th>
+            <th>
+                Kolicina
+            </th>
+            <th>
+                Ukupna cena po proizvodu
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (StavkaKorpe s in Model.Stavke)
+        {
+            <tr>
+                <td>
+                    @s.Proizvod.Naziv
+                </td>
+                <td>
+                    @s.Proizvod.Cena
+                </td>
+                <td>
+                    @s.Kolicina
+                </td>
+                <td>
+                    @(@s.Proizvod.Cena * @s.Kolicina)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h4 class="font-weight-bold">Ukupna cena: @ViewBag.UkupnaCena</h4>
 <p>Hvala na vasem interesovanju.</p>
 <p>Isporucicemo vam robu na kucnu adresu.</p>

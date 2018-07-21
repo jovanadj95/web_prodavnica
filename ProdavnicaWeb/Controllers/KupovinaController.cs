@@ -18,7 +18,6 @@ namespace WebProdavnica.Controllers
         private readonly UserManager<ApplicationUser> um;
         
         private KorpaServis kServis;
-       
 
         public KupovinaController(ProdavnicaWebContext _db, UserManager<ApplicationUser> _um, KorpaServis _kServis)
         {
@@ -42,6 +41,9 @@ namespace WebProdavnica.Controllers
                 KupacId = id,
                 DatumKupovine = DateTime.Now
             };
+
+            decimal ukupnaCena = 0;
+
             try
             {
                 db.Porudzbine.Add(p1);
@@ -56,14 +58,17 @@ namespace WebProdavnica.Controllers
                         Kolicina = st.Kolicina
                     };
 
+                    ukupnaCena = st.Proizvod.Cena * st.Kolicina + ukupnaCena;
+
                     db.Stavke.Add(st1);
                     db.SaveChanges();
                 }
-
                
                 kServis.ObrisiKorpu();
-               
-                return View();
+
+                ViewBag.UkupnaCena = ukupnaCena;
+
+                return View(korpa);
             }
             catch (Exception)
             {
