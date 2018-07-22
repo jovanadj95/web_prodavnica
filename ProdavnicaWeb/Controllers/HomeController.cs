@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProdavnicaWeb.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace ProdavnicaWeb.Controllers
 {
@@ -47,6 +49,36 @@ namespace ProdavnicaWeb.Controllers
                     .OrderBy(p => p.Cena);
             }
             return View("Index", listaProizvoda.ToList());
+        }
+
+
+        public IActionResult PosaljiEmail(string Ime,string Prezime, string Email,string Poruka)
+        {
+            try
+            {
+                MailAddress posiljaoc = new MailAddress(Email, Ime + " " + Prezime);
+                MailAddress primaoc = new MailAddress("filip.panic.1993@gmail.com");
+                MailMessage poruka = new MailMessage();
+
+                poruka.From = posiljaoc;
+                poruka.To.Add(primaoc);
+                poruka.Subject = "Poruka od :" + Email;
+                poruka.Body = Poruka;
+                poruka.IsBodyHtml = true;
+
+                SmtpClient klijent = new SmtpClient("smtp.gmail.com");
+                klijent.Port = 587;
+                klijent.EnableSsl = true;
+                klijent.Credentials = new NetworkCredential("filip.panic.1993@gmail.com", "jakota1993");
+                klijent.Send(poruka);
+                return View("Uspesno");
+
+            }
+            catch (Exception)
+            {
+
+                return View("Greska");
+            }
         }
 
         [Authorize(Policy = "SamoAdmin")]

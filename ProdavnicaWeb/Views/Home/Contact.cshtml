@@ -1,17 +1,29 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Kontakt";
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<h3>Posaljite email poruku</h3>
+<hr />
+<div class="card-group bg-dark text-white col-md-6 justify-content-center pt-3">
+    <form action="/Home/PosaljiEmail" method="post">
+        <div class="form-group d-inline-block">
+            <input id="TextIme" type="text" name="Ime" class="form-control" placeholder="Ime" required autofocus />
+        </div>
+        <div class="form-group d-inline-block">
+            <input id="TextPrezime" type="text" name="Prezime" class="form-control" placeholder="Prezime" required />
+        </div>
+        <div class="form-group">
+            <input id="TextEmail" type="email" name="Email" class="form-control" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+            <textarea id="TextPoruka" rows="4" name="Poruka" class="form-control" placeholder="Poruka" required></textarea>
+        </div>
+        <div class="form-group">
+            <button id="Button1" type="submit" class="btn btn-block btn-success">
+                Posalji
+                email
+            </button>
+        </div>
+    </form>
+</div>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
