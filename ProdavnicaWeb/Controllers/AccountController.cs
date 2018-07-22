@@ -242,7 +242,14 @@ namespace ProdavnicaWeb.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    if (model.Email.Equals("admin@gmail.com"))
+                    {
+                        return RedirectToAction("Administracija", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
                 AddErrors(result);
             }

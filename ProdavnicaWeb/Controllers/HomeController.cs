@@ -19,7 +19,7 @@ namespace ProdavnicaWeb.Controllers
         {
             db = _db;
         }
-        public IActionResult Index(decimal? min, decimal? max, String kategorija = "")
+        public IActionResult Index(decimal? min, decimal? max, string kategorija = "")
         {
             ViewBag.Kategorija = kategorija;
 
@@ -30,21 +30,21 @@ namespace ProdavnicaWeb.Controllers
                 listaProizvoda = listaProizvoda
                     .Where(p => p.KategorijaId == listaKategorija
                     .SingleOrDefault(k => k.Naziv.Equals(kategorija)).KategorijaId);
-
             }
 
-            if (listaProizvoda.Any()) {
-            if (min == null)
+            if (listaProizvoda.Any())
             {
-                min = listaProizvoda.Min(p => p.Cena);
-            }
+                if (min == null)
+                {
+                    min = listaProizvoda.Min(p => p.Cena);
+                }
 
-            if (max == null)
-            {
-                max = listaProizvoda.Max(p => p.Cena);
-            }
+                if (max == null)
+                {
+                    max = listaProizvoda.Max(p => p.Cena);
+                }
 
-            listaProizvoda = listaProizvoda
+                     listaProizvoda = listaProizvoda
                     .Where(p => p.Cena >= min && p.Cena <= max)
                     .OrderBy(p => p.Cena);
             }
@@ -76,7 +76,6 @@ namespace ProdavnicaWeb.Controllers
             }
             catch (Exception)
             {
-
                 return View("Greska");
             }
         }
