@@ -14,7 +14,8 @@ namespace ProdavnicaWeb.Models
         }
 
         public int KategorijaId { get; set; }
-        [StringLength(100)]
+        [Required(ErrorMessage = "Unesi naziv kategorije")]
+        [StringLength(100, ErrorMessage = "Maksimalno 100 karaktera")]
         [Display(Name = "Naziv kategorije")]
         public string Naziv { get; set; }
 

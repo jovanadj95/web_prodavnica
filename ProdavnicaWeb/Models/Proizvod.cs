@@ -16,12 +16,15 @@ namespace ProdavnicaWeb.Models
         public int ProizvodId { get; set; }
         public int KategorijaId { get; set; }
         [Display(Name ="Naziv proizvoda")]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Unesi naziv proizvoda")]
+        [StringLength(100, ErrorMessage = "Maksimalno 100 karaktera")]
         public string Naziv { get; set; }
         [Display(Name ="Opis proizvoda")]
-        [StringLength(100)]
+        [Required(ErrorMessage = "Unesi opis proizvoda")]
+        [StringLength(100, ErrorMessage = "Maksimalno 100 karaktera")]
         public string Opis { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
+        [Required(ErrorMessage = "Unesi cenu")]
         public decimal Cena { get; set; }
 
         [ForeignKey("KategorijaId")]
